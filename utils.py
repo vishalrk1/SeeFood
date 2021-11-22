@@ -21,27 +21,27 @@ import json
 #     return img
 
 
-classes = ['apple_pie', 'baby_back_ribs', 'baklava', 'beef_carpaccio', 'beef_tartare',
- 'beet_salad', 'beignets', 'bibimbap', 'bread_pudding', 'breakfast_burrito',
- 'bruschetta', 'caesar_salad', 'cannoli', 'caprese_salad', 'carrot_cake',
- 'ceviche', 'cheese_plate', 'cheesecake', 'chicken_curry',
- 'chicken_quesadilla', 'chicken_wings', 'chocolate_cake', 'chocolate_mousse',
- 'churros', 'clam_chowder', 'club_sandwich', 'crab_cakes', 'creme_brulee',
- 'croque_madame', 'cup_cakes', 'deviled_eggs', 'donuts', 'dumplings', 'edamame',
- 'eggs_benedict', 'escargots', 'falafel', 'filet_mignon', 'fish_and_chips',
- 'foie_gras', 'french_fries', 'french_onion_soup', 'french_toast',
- 'fried_calamari', 'fried_rice', 'frozen_yogurt', 'garlic_bread', 'gnocchi',
- 'greek_salad', 'grilled_cheese_sandwich', 'grilled_salmon', 'guacamole',
- 'gyoza', 'hamburger', 'hot_and_sour_soup', 'hot_dog', 'huevos_rancheros',
- 'hummus', 'ice_cream', 'lasagna', 'lobster_bisque', 'lobster_roll_sandwich',
- 'macaroni_and_cheese', 'macarons', 'miso_soup', 'mussels', 'nachos',
- 'omelette', 'onion_rings', 'oysters', 'pad_thai', 'paella', 'pancakes',
- 'panna cotta', 'peking_duck', 'pho', 'pizza', 'pork_chop', 'poutine',
+classes = ['apple pie', 'baby back ribs', 'baklava', 'beef carpaccio', 'beef tartare',
+ 'beet salad', 'beignets', 'bibimbap', 'bread pudding', 'breakfast burrito',
+ 'bruschetta', 'caesar_salad', 'cannoli', 'caprese salad', 'carrot cake',
+ 'ceviche', 'cheese plate', 'cheesecake', 'chicken curry',
+ 'chicken quesadilla', 'chicken wings', 'chocolate cake', 'chocolate mousse',
+ 'churros', 'clam chowder', 'club sandwich', 'crab cakes', 'creme brulee',
+ 'croque madame', 'cup cakes', 'deviled eggs', 'donuts', 'dumplings', 'edamame',
+ 'eggs benedict', 'escargots', 'falafel', 'filet mignon', 'fish and chips',
+ 'foie gras', 'french fries', 'french onion soup', 'french toast',
+ 'fried calamari', 'fried rice', 'frozen yogurt', 'garlic bread', 'gnocchi',
+ 'greek salad', 'grilled cheese sandwich', 'grilled salmon', 'guacamole',
+ 'gyoza', 'hamburger', 'hot and sour soup', 'hot dog', 'huevos rancheros',
+ 'hummus', 'ice cream', 'lasagna', 'lobster bisque', 'lobster roll sandwich',
+ 'macaroni and cheese', 'macarons', 'miso soup', 'mussels', 'nachos',
+ 'omelette', 'onion rings', 'oysters', 'pad thai', 'paella', 'pancakes',
+ 'panna cotta', 'peking duck', 'pho', 'pizza', 'pork chop', 'poutine',
  'prime rib', 'pulled pork sandwich', 'ramen', 'ravioli', 'red velvet cake',
  'risotto', 'samosa', 'sashimi', 'scallops', 'seaweed salad',
  'shrimp and grits', 'spaghetti bolognese', 'spaghetti carbonara',
  'spring rolls', 'steak', 'strawberry_shortcake', 'sushi', 'tacos', 'takoyaki',
- 'tiramisu', 'tuna_tartare', 'waffles']
+ 'tiramisu', 'tuna tartare', 'waffles']
 
 def load_prepare_image(filepath, img_size, rescale=False):
     img = tf.io.decode_image(filepath, channels=3)
@@ -79,7 +79,6 @@ def model_pred(model_path, img, class_names=classes):
 
 def fetch_recipe(food_name):
     url = "https://recipesapi2.p.rapidapi.com/recipes/"+food_name
-    print(url)
     querystring = {"maxRecipes":"1"}
 
     headers = {

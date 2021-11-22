@@ -5,6 +5,10 @@ import time
 import tensorflow as tf
 from utils import load_prepare_image, model_pred, fetch_recipe
 
+import sys
+sys.path.insert(1, 'Api Data')
+from RecipeData import fetchRecipeData
+
 IMG_SIZE = (224, 224)
 model_V1 = 'models\Seefood_model_v1.tflite'
 model_V2 = 'models\Seefood_model_V2.tflite'
@@ -13,8 +17,8 @@ model_V2 = 'models\Seefood_model_V2.tflite'
 def model_prediction(model, img_file, rescale):
     img = load_prepare_image(img_file, IMG_SIZE, rescale=rescale)
     prediction = model_pred(model, img)
-    recipe_data = fetch_recipe(prediction)
-    return prediction, recipe_data
+    sorceCode, recipe_data = fetchRecipeData(prediction)
+    return prediction, sorceCode, recipe_data 
 
 
 def main():
@@ -26,7 +30,7 @@ def main():
     )
 
     st.title('SeeFood🍔')
-    st.write('Get Recipe of your food')
+    st.write('Upload a food image and get the recipe for that food and other details of that food')
 
     col1, col2 = st.columns(2)
 
@@ -55,27 +59,30 @@ def main():
                     pred_rescale = False
                 
                 # makeing prediction and fetching food recipe form api
-                food, recipe_data = model_prediction(pred_model, uploaded_img, pred_rescale)
+                food, source_code, recipe_data = model_prediction(pred_model, uploaded_img, pred_rescale)
                 
                 # food name message
                 col1.success(f"It's an {food}")
                 
-                # desplay food recipe
-                st.header(recipe_data['name']+" Recipe")
+                if source_code == 200:
+                    # desplay food recipe
+                    st.header(recipe_data['title']+" Recipe")
                 
-                col3, col4 = st.columns(2)
-                # with st.spinner(f'Getting Recipe for {food}'):
-                #     time.sleep(5)
-                with col3:
-                    # Ingridents of recipie
-                    st.subheader('Ingredients')
-                    for i in recipe_data['ingredients']:
-                        st.markdown(f"* {i}")
-                # Inctuction for recipe
-                with col4:
-                    st.subheader('Instructions')
-                    for i in recipe_data['instructions']:
-                        st.markdown(f"* {i}")
+                    col3, col4 = st.columns(2)
+
+                    with col3:
+                        # Ingridents of recipie
+                        st.subheader('Ingredients')
+                        # st.info(recipe_data['ingridents'])
+                        for i in recipe_data['ingridents']:
+                            st.info(f"{i}")
+                    # Inctuction for recipe
+                    with col4:
+                        st.subheader('Instructions')
+                        st.info(recipe_data['instructions'])
+                       
+                else:
+                    st.error('Something went wrong please try again :(')
                 
 
         else:
