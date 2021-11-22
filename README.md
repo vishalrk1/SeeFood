@@ -2,8 +2,8 @@
 an web App to classify food dishes and then to disply recipe of that food
 
 <p float="left">
-  <img src="images/Webapp_V2.png" width="80" height="80"/>
-  <img src="images/RecipeDetails.png" width="80" height="80"/> 
+  <img src="images/Webapp_V2.png" width="50%" />
+  <img src="images/RecipeDetails.png" width="50%"/> 
 </p>
 
 # Datasets Used
