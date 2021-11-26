@@ -61,6 +61,11 @@ def main():
                 # makeing prediction and fetching food recipe form api
                 food, source_code, recipe_data = model_prediction(pred_model, uploaded_img, pred_rescale)
                 
+                # asssigning caleoric breakdown data
+                percent_Protein = recipe_data['percentProtein']
+                percent_fat = recipe_data['percentFat']
+                percent_carbs = recipe_data['percentCarbs'] 
+                
                 # food name message
                 col1.success(f"It's an {food}")
                 
@@ -80,6 +85,16 @@ def main():
                     with col4:
                         st.subheader('Instructions')
                         st.info(recipe_data['instructions'])
+                        # st.subheader('Caloric Breakdown')
+                        '''
+                        ## Caloric Breakdown
+                        '''
+                        st.success(f'''
+                                    * Protien:  {percent_Protein}%
+                                    * Fat: {percent_fat}%
+                                    * Carbohydrates: {percent_carbs}%
+                                    ''')
+                        
                        
                 else:
                     st.error('Something went wrong please try again :(')
