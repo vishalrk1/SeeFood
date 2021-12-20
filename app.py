@@ -10,8 +10,8 @@ sys.path.insert(1, 'Api Data')
 from RecipeData import fetchRecipeData
 
 IMG_SIZE = (224, 224)
-model_V1 = 'models\Seefood_model_v1.tflite'
-model_V2 = 'models\Seefood_model_V2.tflite'
+model_V1 = 'models/Seefood_model_v1.tflite'
+model_V2 = 'models/Seefood_model_V2.tflite'
 
 @st.cache()
 def model_prediction(model, img_file, rescale):
