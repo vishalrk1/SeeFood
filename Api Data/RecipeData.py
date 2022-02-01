@@ -35,7 +35,7 @@ def fetchRecipeData(foodName, apiKey = API_KEY):
     # recipe ingredients
     recipe_Ingredients = all_recipe_json_data['extendedIngredients']
     for i, dict in enumerate(recipe_Ingredients):
-        recipe_Ingredients[i] = dict['originalString']
+        recipe_Ingredients[i] = dict['originalName']
     Ingredients = ', '.join(recipe_Ingredients)
 
     # caloric Breakdow of recipe
