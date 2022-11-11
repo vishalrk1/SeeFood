@@ -2,7 +2,7 @@ import requests
 import json
 import random
 
-API_KEY = '16b65f6510e040528021ce8f8b439002'
+API_KEY = ''
 
 def fetchRecipeData(foodName, apiKey = API_KEY):
     recipe = {}
