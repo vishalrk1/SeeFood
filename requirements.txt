@@ -1,4 +1,4 @@
 streamlit>=1.0.0
 numpy
-tensorflow==2.6.0
+tensorflow
 huggingface
