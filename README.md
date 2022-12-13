@@ -13,12 +13,6 @@ Try Demo: **[Web App](https://huggingface.co/spaces/Vrk/SeeFood)**
 - **[FOOD 101](https://www.kaggle.com/dansbecker/food-101)** for general food Model
 - for **Indian Food Data** created my own dataset
 
-# Modeling Experiments
-
-## General Food Model
-- In Model V1 pretrained EfficientNetB0 Model with last 10 layers unfreezed is used. got 68% accuracy [Notebook](https://github.com/vishalrk1/SeeFood/blob/main/Notebooks/SeeFood_General_V1.ipynb)
-- In Model V2 pretrained Xception Model with last 22 layers unfreezed is used. got 76% accuracy [Notebook](https://github.com/vishalrk1/SeeFood/blob/main/Notebooks/SeeFood_General_V2.ipynb)
-
 ## SeeFood Flask API Responce
 ```
 {
@@ -52,8 +46,20 @@ Try Demo: **[Web App](https://huggingface.co/spaces/Vrk/SeeFood)**
 ```
 <!-- - **[Nutrition API](https://rapidapi.com/spoonacular/api/recipe-food-nutrition)** is used to get all the information of food -->
 
-## Contact Me
+# Classification Models
 
+| Classifier          | Acc. |
+|---------------------|------|
+| EfficientNEt-B0 | 0.69 |
+| Xception | 0.76 |
+| Rexnet 200 | 0.75|
+| ViT | |
+
+## ViT ( Vision Transformer )
+
+<img src="./images/vit.gif" width="500px"></img>
+
+## Contact Me
 
 <p align="start">
     <a href="https://github.com/vishalrk1" target="_blank">

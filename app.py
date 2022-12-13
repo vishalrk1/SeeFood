@@ -50,7 +50,7 @@ def main():
         predict = st.button('Get Recipe!')
 
     if predict:
-        with st.spinner("Analizing Image 🕵️‍♂️"):
+        with st.spinner("Analyzing Image 🕵️‍♂️"):
             food_cat = food_not_food(pil_img)
         
         if food_cat == 'food':
