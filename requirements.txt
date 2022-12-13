@@ -1,4 +1,6 @@
 streamlit
 numpy
 tensorflow
+timm
+torch
 transformers

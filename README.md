@@ -8,12 +8,11 @@ Try Demo: **[Web App](https://huggingface.co/spaces/Vrk/SeeFood)**
   <img src="images/RecipeDetails.png" width="50%"/> 
 </p>
 
-# Datasets Used
+# Project Flow Chart
 
-- **[FOOD 101](https://www.kaggle.com/dansbecker/food-101)** for general food Model
-- for **Indian Food Data** created my own dataset
+<img src="./images/FlowChart.jpeg" width="700px"></img>
 
-## SeeFood Flask API Responce
+# SeeFood Flask API Responce
 ```
 {
     "foodName": "hamburger",
@@ -46,14 +45,21 @@ Try Demo: **[Web App](https://huggingface.co/spaces/Vrk/SeeFood)**
 ```
 <!-- - **[Nutrition API](https://rapidapi.com/spoonacular/api/recipe-food-nutrition)** is used to get all the information of food -->
 
+
+# Datasets Used
+
+- **[FOOD 101](https://www.kaggle.com/dansbecker/food-101)** for general food Model
+- for **Indian Food Data** created my own dataset
+
+
 # Classification Models
 
-| Classifier          | Acc. |
+| Classifier          | Accuracy |
 |---------------------|------|
 | EfficientNEt-B0 | 0.69 |
 | Xception | 0.76 |
 | Rexnet 200 | 0.75|
-| ViT | |
+| ViT | **0.85** |
 
 ## ViT ( Vision Transformer )
 

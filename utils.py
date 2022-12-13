@@ -1,25 +1,13 @@
 import tensorflow as tf
 import numpy as np
+import torch
+import torch.nn as nn
+import timm
+from torchvision import transforms
 import os
 
 import requests
 import json
-# def view_and_predict(target_dir, target_class, model_path):
-
-#     # Reading image and plotting image
-#     img = tf.io.read_file(target_folder + '/' + random_image[0])
-#     img = tf.io.decode_image(img)
-#     img = tf.image.resize(img,(224,224))
-#     img_show = img/255.
-
-#     pred = model_pred(model_path, img, class_names)
-
-#     plt.imshow(img_show)
-#     plt.title(f"Real Label: {target_class},   prediction: {pred}")
-#     plt.axis('off');
-
-#     return img
-
 
 classes = ['apple pie', 'baby back ribs', 'baklava', 'beef carpaccio', 'beef tartare',
  'beet salad', 'beignets', 'bibimbap', 'bread pudding', 'breakfast burrito',
@@ -43,7 +31,11 @@ classes = ['apple pie', 'baby back ribs', 'baklava', 'beef carpaccio', 'beef tar
  'spring rolls', 'steak', 'strawberry_shortcake', 'sushi', 'tacos', 'takoyaki',
  'tiramisu', 'tuna tartare', 'waffles']
 
-def load_prepare_image(filepath, img_size, rescale=False):
+##########################################################################
+#                    TENSORFLOW FUNCTIONS                                #
+##########################################################################
+
+def load_prepare_image_tf(filepath, img_size, rescale=False):
     img = tf.io.decode_image(filepath, channels=3)
     img = tf.image.resize(img, img_size)
 
@@ -52,7 +44,7 @@ def load_prepare_image(filepath, img_size, rescale=False):
     else:
         return img
 
-def model_pred(model_path, img, class_names=classes):
+def model_pred_tf(model_path, img, class_names=classes):
     # Load TFLite model and allocate tensors.
     interpreter = tf.lite.Interpreter(model_path=model_path)
     #allocate the tensors
@@ -76,6 +68,38 @@ def model_pred(model_path, img, class_names=classes):
     food_name = class_names[pred]
 
     return food_name
+
+##########################################################################
+#                    PyTorch FUNCTIONS                                   #
+##########################################################################
+
+def get_model_pt(model_path):
+    model = timm.create_model('vit_base_patch16_224', pretrained=False)
+    model.head = nn.Linear(in_features=768, out_features=len(classes), bias=True)
+    model.load_state_dict(torch.load('models/ViT-101-1.pt', map_location='cpu'))
+    return model
+
+def load_prepare_image_pt(input_image):
+    normalize = transforms.Normalize(
+        [0.485, 0.456, 0.406], 
+        [0.229, 0.224, 0.225]
+    )
+    img_transform = transforms.Compose([
+        transforms.Resize((225, 225)),
+        transforms.CenterCrop(224),
+        transforms.ToTensor(),
+        normalize,
+    ])
+    input_image = img_transform(input_image).unsqueeze(0)
+    return input_image
+    
+
+def model_pred_pt(input_image, model_path):
+    model = get_model_pt(model_path)
+    probs = model(input_image)
+    y_preds = torch.softmax(probs, dim=1).detach().numpy().argmax()
+    pred = classes[y_preds]
+    return pred
 
 def fetch_recipe(food_name):
     url = "https://recipesapi2.p.rapidapi.com/recipes/"+food_name
