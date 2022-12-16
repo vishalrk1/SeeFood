@@ -1,7 +1,7 @@
 # SeeFood
 an web App to classify food dishes and then to disply recipe of that food
 
-Try Demo: **[Web App](https://huggingface.co/spaces/Vrk/SeeFood)**
+### HuggingFace Demo: **[Web App](https://huggingface.co/spaces/Vrk/SeeFood)**
 
 <p float="left">
   <img src="images/Webapp_V2.png" width="50%" />
